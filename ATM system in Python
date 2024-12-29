@@ -1,0 +1,77 @@
+class ATM:
+    def __init__(self, card_number, pin):
+        self.card_number = card_number
+        self.pin = pin
+        self.balance = 1000  # Initial balance
+
+    def check_balance(self):
+        print(f"Your current balance is: ${self.balance}")
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Insufficient funds.")
+        else:
+            self.balance -= amount
+            print(f"You withdrew ${amount}. New balance: ${self.balance}")
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"You deposited ${amount}. New balance: ${self.balance}")
+
+# Example Usage:
+if __name__ == "__main__":
+    user_card_number = input("Enter your card number: ")
+    user_pin = input("Enter your PIN: ")
+
+    atm = ATM(user_card_number, user_pin)
+
+    while True:
+        print("\nATM Menu:")
+        print("1. Check Balance")
+        print("2. Withdraw")
+        print("3. Deposit")
+        print("4. Exit")
+
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            atm.check_balance()
+        elif choice == 2:
+            withdraw_amount = float(input("Enter withdrawal amount: "))
+            atm.withdraw(withdraw_amount)
+        elif choice == 3:
+            deposit_amount = float(input("Enter deposit amount: "))
+            atm.deposit(deposit_amount)
+        elif choice == 4:
+            print("Thank you for using the ATM.")
+            break
+        else:
+            print("Invalid choice.")
+
+Explanation:
+ * Class Definition:
+   * ATM class is created to represent an ATM object.
+   * __init__ method initializes the card number, PIN, and initial balance.
+ * Methods:
+   * check_balance(): Prints the current account balance.
+   * withdraw(amount):
+     * Checks if the withdrawal amount exceeds the balance.
+     * If sufficient funds, deducts the amount from the balance and prints the new balance.
+   * deposit(amount): Adds the deposit amount to the balance and prints the new balance.
+ * User Interaction:
+   * Prompts the user for their card number and PIN.
+   * Displays an ATM menu with options: Check Balance, Withdraw, Deposit, and Exit.
+   * Continuously prompts the user for their choice until they choose to exit.
+   * Based on the user's choice, calls the corresponding method of the ATM object.
+Key Improvements:
+ * Object-Oriented Approach: Encapsulates ATM functionality within a class for better organization and reusability.
+ * User-Friendly Interface: Provides a simple and intuitive menu for user interaction.
+ * Error Handling: Checks for insufficient funds during withdrawal.
+ * Clear and Concise Code: Uses meaningful variable names and comments for better readability.
+This code provides a basic framework for an ATM system. You can further enhance it by adding features like:
+ * Transaction History: Store and display past transactions.
+ * Security Measures: Implement stronger PIN verification and fraud detection mechanisms.
+ * Database Integration: Connect to a database to store user accounts and transaction data.
+ * Graphical User Interface (GUI): Create a more visually appealing and user-friendly interface using libraries like Tkinter or PyQt.
+Remember to adapt and extend this code to meet the specific requirements of your ATM system.
+ * https://github.com/jboystudio/Bank_account-Management
