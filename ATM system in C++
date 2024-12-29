@@ -1,0 +1,109 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class ATM {
+private:
+    string cardNumber;
+    string pin;
+    double balance;
+
+public:
+    ATM(string cardNumber, string pin) {
+        this->cardNumber = cardNumber;
+        this->pin = pin;
+        this->balance = 1000.00; // Initial balance
+    }
+
+    void checkBalance() {
+        cout << "Your current balance is: $" << balance << endl;
+    }
+
+    void withdraw(double amount) {
+        if (amount > balance) {
+            cout << "Insufficient funds." << endl;
+        } else {
+            balance -= amount;
+            cout << "You withdrew $" << amount << ". New balance: $" << balance << endl;
+        }
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+        cout << "You deposited $" << amount << ". New balance: $" << balance << endl;
+    }
+};
+
+int main() {
+    string cardNumber, pin;
+
+    cout << "Enter your card number: ";
+    cin >> cardNumber;
+    cout << "Enter your PIN: ";
+    cin >> pin;
+
+    ATM atm(cardNumber, pin);
+
+    int choice;
+    double amount;
+
+    while (true) {
+        cout << "\nATM Menu:" << endl;
+        cout << "1. Check Balance" << endl;
+        cout << "2. Withdraw" << endl;
+        cout << "3. Deposit" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                atm.checkBalance();
+                break;
+            case 2:
+                cout << "Enter withdrawal amount: ";
+                cin >> amount;
+                atm.withdraw(amount);
+                break;
+            case 3:
+                cout << "Enter deposit amount: ";
+                cin >> amount;
+                atm.deposit(amount);
+                break;
+            case 4:
+                cout << "Thank you for using the ATM." << endl;
+                return 0;
+            default:
+                cout << "Invalid choice." << endl;
+        }
+    }
+
+    return 0;
+}
+
+Explanation:
+ * Class Definition:
+   * ATM class encapsulates the card number, PIN, and balance.
+   * private members are not directly accessible from outside the class.
+   * public methods provide access to the ATM's functionality.
+ * Constructor:
+   * ATM(cardNumber, pin) initializes the card number, PIN, and sets an initial balance.
+ * Member Functions:
+   * checkBalance(): Displays the current balance.
+   * withdraw(amount):
+     * Checks for sufficient funds before withdrawing.
+     * Updates the balance after a successful withdrawal.
+   * deposit(amount): Adds the deposit amount to the balance.
+ * Main Function:
+   * Gets user input for card number and PIN.
+   * Creates an ATM object.
+   * Displays an interactive menu with options.
+   * Uses a switch statement to handle user choices.
+   * Exits the loop when the user selects "Exit".
+This C++ code provides a basic ATM system with essential features. You can further enhance it by:
+ * Adding transaction history.
+ * Implementing more robust security measures.
+ * Integrating with a database for user accounts and transaction data.
+ * Creating a more user-friendly GUI.
+I hope this improved C++ code is helpful!
